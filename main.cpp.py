@@ -3,6 +3,17 @@ import random
 f = open("date.in")
 g = open("date.in", "w")
 
+def Verificare_sortare_corecta(l):
+    i = 0
+    ok = 0
+    while i < len(l) - 1 and ok == 0:
+        if l[i] > l[i + 1]:
+            ok = 1
+        i += 1
+    if ok == 1:
+        return False
+    return True
+
 #1:
 def CountSort():
     global l
@@ -107,7 +118,6 @@ def BubbleSort():
 #1: mainCountSort:
 
 #a)Generator de inputuri:
-import random
 #1: vector sortat descrescator cu elementele de la 10^6 la 1
 for i in range(1000000, 1, -1):
     g.write(str(i) + " ")
@@ -158,17 +168,11 @@ for k in range(5):
         l = CountSort()
 
         # verificare ca sorteaza corect:
-        i = 0
-        ok = 0
-        while i < len(l) - 1 and ok == 0:
-            if l[i] > l[i + 1]:
-                ok = 1
-            i += 1
-        if ok == 1:
+        if Verificare_sortare_corecta(l):
             print(l)
-            print("sortarea nu este corecta")
         else:
             print(l)
+            print("sortarea nu este corecta")
     print("--- %s seconds ---" % (time.time() - start_time))
 
     # Lista de 10^7 elemente deja sortate crescator: 22.48 secunde
@@ -185,27 +189,26 @@ for k in range(5):
 #2: QuickSort
 #a)Generator de input
 
-import random
-#vector sortat descrescator cu elementele de la 10^17
+#1: vector sortat descrescator cu elementele de la 10^17
 for i in range(100, 1, -1):
     g.write(str(i*1000000000000000) + " ")
 g.write('\n')
 
-#vector cu elemente negative
+#2: vector cu elemente negative
 for i in range(100):
     g.write(str(-i)+" ")
 g.write('\n')
-#vector cu elemente de pana la 10^100
+#3: vector cu elemente de pana la 10^100
 for i in range(1,100):
     c = pow(10, i)
     g.write(str(random.randint(10, c)) + " ")
 g.write('\n')
 
-#vector cu elemente egale
+#4: vector cu elemente egale
 for i in range(100):
     g.write(str(9999999)+" ")
 g.write('\n')
-#vector sortat crescator cu elementele de la 1 la 10^6
+#5: vector sortat crescator cu elementele de la 1 la 10^6
 for i in range(100):
     g.write(str(i) + " ")
 
@@ -227,17 +230,11 @@ for k in range(5):
         quicksort(l, 0, n)
 
         # verificare ca sorteaza corect:
-        i = 0
-        ok = 0
-        while i < n and ok == 0:
-            if l[i] > l[i + 1]:
-                ok = 1
-            i += 1
-        if ok == 1:
+        if Verificare_sortare_corecta(l):
             print(l)
-            gresit()
         else:
             print(l)
+            print("sortarea nu este corecta")
     print("--- %s seconds ---" % (time.time() - start_time))
 
 # limita nr de elemente: 100 pentru a evita RecursionError: maximum recursion depth exceeded in comparison
@@ -249,28 +246,28 @@ for k in range(5):
 #3:RadixSort:
 #a)Generator de input:
 
-#vector sortat descrescator cu elementele de la 10^5 la 1
+#1: vector sortat descrescator cu elementele de la 10^5 la 1
 for i in range(100000, 1, -1):
     g.write(str(i) + " ")
 g.write('\n')
 
-#vector cu elemente de pana la 10^100
+#3: vector cu elemente de pana la 10^100
 for i in range(1,100):
     c=pow(10,i)
     g.write(str(random.randint(10,c))+" ")
 g.write('\n')
 
-#vector cu elemente negative
+#2: vector cu elemente negative
 for i in range(200):
     g.write(str(-i)+" "+str(i)+" ")
 g.write('\n')
 
-#vector cu elemente egale
+#4: vector cu elemente egale
 for i in range(200):
     g.write(str(9999999)+" ")
 g.write('\n')
 
-#vector sortat crescator cu elementele de la 1 la 10^6
+#5: vector sortat crescator cu elementele de la 1 la 10^6
 for i in range(100000):
     g.write(str(i) + " ")
 g.write('\n')
@@ -308,17 +305,11 @@ for k in range(5):
             l=RadixSort256(l)
 
             #verificare:
-            i = 0
-            ok = 0
-            while i < len(l)-1 and ok == 0:
-                if l[i] > l[i + 1]:
-                    ok = 1
-                i += 1
-            if ok == 1:
+            if Verificare_sortare_corecta(l):
                 print(l)
-                print("sortarea nu este corecta")
             else:
                 print(l)
+                print("sortarea nu este corecta")
     print("--- %s seconds ---" % (time.time() - start_time))
 
 #numere mai mici de 10^100, altfel ajunge la 11 sec pe un vector sortat
@@ -329,28 +320,28 @@ for k in range(5):
 #4:Mergesort:
 
 #a)Generator de input:
-#vector sortat descrescator cu elementele de la 10^5 la 1
+#1: vector sortat descrescator cu elementele de la 10^5 la 1
 for i in range(100000, 1, -1):
     g.write(str(i) + " ")
 g.write('\n')
 
-#vector cu elemente de pana la 10^1000
+#3: vector cu elemente de pana la 10^1000
 for i in range(1,1000):
     c = pow(10, i)
     g.write(str(random.randint(10, c)) + " ")
 g.write('\n')
 
-#vector cu elemente negative
+#2: vector cu elemente negative
 for i in range(50):
     g.write(str(-i)+" "+str(i)+" ")
 g.write('\n')
 
-#vector cu elemente egale
+#4: vector cu elemente egale
 for i in range(50):
     g.write(str(9999999)+" ")
 g.write('\n')
 
-#vector sortat crescator
+#5: vector sortat crescator
 for i in range(1000):
     g.write(str(i) + " ")
 g.write('\n')
@@ -370,17 +361,11 @@ for k in range(5):
             ls[i] = int(ls[i])
         ls = merge_sort(ls)
         #verificare:
-        i = 0
-        ok = 0
-        while i < len(ls) - 1 and ok == 0:
-            if ls[i] > ls[i + 1]:
-                ok = 1
-            i += 1
-        if ok == 1:
-            print(ls)
-            print("sortarea nu este corecta")
+        if Verificare_sortare_corecta(l):
+            print(l)
         else:
-            print(ls)
+            print(l)
+            print("sortarea nu este corecta")
     print("--- %s seconds ---" % (time.time() - start_time))
 
 #limita de 10^5 numere
@@ -393,55 +378,51 @@ for k in range(5):
 #5:Main Bubblesort:
 
 #a)Generator de inputuri:
-#vector sortat descrescator cu elementele de la 10^5 la 1
+#1: vector sortat descrescator cu elementele de la 10^5 la 1
 for i in range(1000, 1, -1):
     g.write(str(i) + " ")
 g.write('\n')
 
-#vector cu elemente de pana la 10^1000
+#3: vector cu elemente de pana la 10^1000
 for i in range(1,1000):
     c = pow(10, i)
     g.write(str(random.randint(10, c)) + " ")
 g.write('\n')
 
-#vector cu elemente negative
+#2: vector cu elemente negative
 for i in range(200):
     g.write(str(-i)+" "+str(i)+" ")
 g.write('\n')
 
-#vector cu elemente egale
+#4: vector cu elemente egale
 for i in range(200):
     g.write(str(9999999)+" ")
 g.write('\n')
 
-#vector sortat crescator cu elementele de la 1 la 10^6
+#5: vector sortat crescator cu elementele de la 1 la 10^6
 for i in range(1000):
     g.write(str(i) + " ")
 g.write('\n')
 
 
 #b)main
+print("~Bubblesort~")
 for k in range (5):
+    print('\n')
+    print("lista", str(k + 1), ":")
+    print("nr de elemente=", str(len(ls)))
     start_time = time.time()
     l = []
     l = f.readline().split()
     for i in range(len(l)):
         l[i]=int(l[i])
     BubbleSort()
-
     # verificare ca sorteaza corect:
-
-    i = 0
-    ok = 0
-    while i < len(l)-1 and ok == 0:
-        if l[i] > l[i + 1]:
-            ok = 1
-        i += 1
-    if ok == 1:
+    if Verificare_sortare_corecta(l):
         print(l)
-        print("sortarea nu este corecta")
     else:
         print(l)
+        print("sortarea nu este corecta")
     print("--- %s seconds ---" % (time.time() - start_time))
 
 #pe liste de mai putin de 10000 de numere! Altfel ajunge la 20 de secunde
