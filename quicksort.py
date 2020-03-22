@@ -1,9 +1,11 @@
 import time
-
+import random
 
 def partitie(l, st, dr):
     k = st - 1
-    p = l[dr]  # =pivotul!! iau elementul cel mai din dreapta
+    poz=random.randint(st,dr)
+    l[dr],l[poz]=l[poz],l[dr]
+    p = l[dr]  # =pivotul!!
     for i in range(st, dr):
         if l[i] < p:  # pun elementele mai mici in stanga si cele mai mari in dreapta
             k += 1
